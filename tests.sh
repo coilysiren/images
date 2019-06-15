@@ -7,5 +7,8 @@ curl --version
 git --version
 shellcheck --version
 gcc --version
+make --version
 
 shellcheck tests.sh
+
+python --version
