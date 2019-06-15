@@ -7,3 +7,5 @@ curl --version
 git --version
 shellcheck --version
 gcc --version
+
+shellcheck tests.sh
