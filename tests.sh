@@ -3,4 +3,7 @@
 set -euo pipefail
 set -o xtrace
 
-ls
+curl --version
+git --version
+shellcheck --version
+gcc --version
