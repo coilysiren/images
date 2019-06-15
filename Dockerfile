@@ -19,7 +19,7 @@ RUN \
 
 # PYTHON
 # check that python doesn't already exist
-RUN if command -v git 2>/dev/null; then exit 1; fi
+RUN if command -v python 2>/dev/null; then exit 1; fi
 RUN git clone https://github.com/python/cpython.git
 WORKDIR /projects/cpython
 RUN git checkout v3.7.3
