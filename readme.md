@@ -1,8 +1,11 @@
-# base-image
+# lynncyrin/base-image
 
-personal docker base image
+A personalized and well documented [docker](https://www.docker.com/) dev time base image.
 
-links:
+## Status
 
-- https://www.docker.com/
-- https://docs.docker.com/docker-hub/builds/
+- [ ] python
+- [ ] golang
+- [ ] nodejs
+- [ ] rust
+- [ ] ruby
