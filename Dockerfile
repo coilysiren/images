@@ -57,6 +57,7 @@ RUN set -euxo pipefail \
   && cd cpython \
   && git checkout "v$PYTHON_VERSION" \
   && ./configure \
+    --with-system-ffi \
   && make \
   && make install \
   echo "done!"
