@@ -30,7 +30,7 @@ ENTRYPOINT ["/bin/bash", "-c"]
 #   build-essential - installs gcc / make / etc
 #   g++ - for building c++
 #   lsb-core - installs lsb_release for optionally inspecting os version
-#   zlib1g-dev - installs zlib https://github.com/madler/zlib, necessary for compilation
+#   zlib1g-dev - installs zlib https://github.com/madler/zlib, necessary for compilation (some resources are compressed)
 #   libssl-dev - installs https://github.com/openssl/openssl, necessary for ssl
 #   libffi-dev - installs https://sourceware.org/libffi/, necessary for python / ruby / etc to call c code
 RUN set -euxo pipefail \
