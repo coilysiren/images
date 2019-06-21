@@ -61,5 +61,5 @@ RUN set -euxo pipefail \
   && ./configure \
   && make \
   && make install \
-  echo "done!"
+  && echo "python install done!"
   # && cat `python --version` | sed "s/Python //" | xargs if [[ "$1:" -ne "$PYTHON_VERSION" ]]; then exit 1;
