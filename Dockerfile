@@ -9,7 +9,8 @@ RUN apt-get install -y \
   curl \
   git \
   shellcheck \
-  build-essential
+  build-essential \
+  lsb-release
 
 # PYTHON
 # https://github.com/python/cpython
