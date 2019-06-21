@@ -48,5 +48,5 @@ RUN set -euxo pipefail \
   && git checkout "v$PYTHON_VERSION" \
   && ./configure \
   && make \
-  && make test
-# RUN python --version
+  && make install \
+  && python --version
