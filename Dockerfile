@@ -32,7 +32,7 @@ ENTRYPOINT ["/bin/bash", "-c"]
 #   lsb-core - installs lsb_release for optionally inspecting os version
 #   zlib1g-dev - installs zlib https://github.com/madler/zlib, necessary for compilation
 #   libssl-dev - installs https://github.com/openssl/openssl, necessary for ssl
-#   libffi-dev - installs https://sourceware.org/libffi/, necessary for python to call c code
+#   libffi-dev - installs https://sourceware.org/libffi/, necessary for python / ruby / etc to call c code
 RUN set -euxo pipefail \
   && apt-get update \
   && apt-get install -y \
