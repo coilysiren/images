@@ -14,14 +14,15 @@ RUN apt-get update && apt-get install -y \
 # PYTHON
 # https://github.com/python/cpython
 # check that python doesn't already exist
+ENV PYTHON_VERSION 3.7.3
 RUN if command -v python 2>/dev/null; then exit 1; fi
 RUN git clone \
   --depth "1" \
-  --branch "v3.7.3" \
+  --branch "$PYTHON_VERSION" \
   --config "advice.detachedHead=false" \
   "https://github.com/python/cpython.git"
 WORKDIR /projects/cpython
-RUN git checkout v3.7.3
+RUN git checkout "$PYTHON_VERSION"
 RUN ./configure
 RUN make
 RUN make test
