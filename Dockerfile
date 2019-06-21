@@ -1,3 +1,5 @@
+# ubuntu
+#   wiki: https://en.wikipedia.org/wiki/Ubuntu
 FROM ubuntu:19.10
 
 # workdir
@@ -43,7 +45,7 @@ WORKDIR /projects/cpython
 RUN git checkout "v$PYTHON_VERSION"
 RUN ./configure
 RUN make
-# RUN make test
+RUN make test
 # RUN python --version
 
 WORKDIR /projects
