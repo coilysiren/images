@@ -38,18 +38,15 @@ RUN set -euxo pipefail \
 #   website: https://www.python.org/
 #   source: https://github.com/python/cpython
 ENV PYTHON_VERSION 3.7.3
-# control test: check that python doesn't already exist
-RUN if command -v python 2>/dev/null; then exit 1; fi
-RUN git clone \
-  --depth "1" \
-  --branch "v$PYTHON_VERSION" \
-  --config "advice.detachedHead=false" \
-  "https://github.com/python/cpython.git"
-WORKDIR /projects/cpython
-RUN git checkout "v$PYTHON_VERSION"
-RUN ./configure
-RUN make
-RUN make test
+RUN set -euxo pipefail \
+  && git clone \
+    --depth "1" \
+    --branch "v$PYTHON_VERSION" \
+    --config "advice.detachedHead=false" \
+    "https://github.com/python/cpython.git" \
+  && cd cpython \
+  && git checkout "v$PYTHON_VERSION" \
+  && ./configure \
+  && make \
+  && make test
 # RUN python --version
-
-WORKDIR /projects
