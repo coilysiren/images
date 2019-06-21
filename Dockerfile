@@ -16,6 +16,8 @@ RUN mkdir -p /projects
 #   docs: https://www.gnu.org/software/bash/manual/html_node/index.html
 SHELL ["/bin/bash", "-c"]
 
+ENTRYPOINT ["/bin/bash", "-c"]
+
 # "what is `set -euxo pipefile` for?"
 #   docs: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 #   blog post: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
