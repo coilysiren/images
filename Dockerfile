@@ -13,7 +13,6 @@ FROM ubuntu:19.10
 #   mkdir - http://manpages.ubuntu.com/manpages/bionic/man1/mkdir.1.html (swap ubuntu version as needed)
 #
 # bash (as oppossed to the default, sh) is required for `set -euxo pipefile` calls.
-#
 # "what is `set -euxo pipefile` for?"
 #   docs: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 #   blog post: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
@@ -25,9 +24,14 @@ ENTRYPOINT ["/bin/bash", "-c"]
 
 # APT
 # packages:
+#   curl - installs curl https://github.com/curl/curl
+#   git - installs git https://git-scm.com/
+#   shellcheck - installs https://github.com/koalaman/shellcheck
 #   build-essential - installs gcc / make / etc
-#   zlib1g-dev - installs zlib for python compiles
+#   g++ - ???
 #   lsb-core - installs lsb_release for inspecting os version
+#   zlib1g-dev - installs zlib for python compiles
+#   libssl-dev - installs https://github.com/openssl/openssl
 RUN set -euxo pipefail \
   && apt-get update \
   && apt-get install -y \
@@ -37,7 +41,8 @@ RUN set -euxo pipefail \
     build-essential \
     g++ \
     lsb-core \
-    zlib1g-dev
+    zlib1g-dev \
+    libssl-dev
 
 # PYTHON
 #   website: https://www.python.org/
