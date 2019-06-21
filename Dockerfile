@@ -15,7 +15,8 @@ RUN mkdir -p /projects
 # bash
 #   docs: https://www.gnu.org/software/bash/manual/html_node/index.html
 SHELL ["/bin/bash", "-c"]
-
+# entrypoint
+#   docs: https://docs.docker.com/engine/reference/builder/#entrypoint
 ENTRYPOINT ["/bin/bash", "-c"]
 
 # "what is `set -euxo pipefile` for?"
