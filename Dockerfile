@@ -26,12 +26,12 @@ ENTRYPOINT ["/bin/bash", "-c"]
 # packages:
 #   curl - installs curl https://github.com/curl/curl
 #   git - installs git https://git-scm.com/
-#   shellcheck - installs https://github.com/koalaman/shellcheck
+#   shellcheck - installs https://github.com/koalaman/shellcheck for optional shell syntax linting
 #   build-essential - installs gcc / make / etc
 #   g++ - ???
-#   lsb-core - installs lsb_release for inspecting os version
-#   zlib1g-dev - installs zlib for python compiles
-#   libssl-dev - installs https://github.com/openssl/openssl
+#   lsb-core - installs lsb_release for optionally inspecting os version
+#   zlib1g-dev - installs zlib https://github.com/madler/zlib, necessary for compilation
+#   libssl-dev - installs https://github.com/openssl/openssl, necessary for ssl
 RUN set -euxo pipefail \
   && apt-get update \
   && apt-get install -y \
