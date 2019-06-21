@@ -21,7 +21,7 @@ RUN set -euxo pipefail \
 #   website: https://www.python.org/
 #   source: https://github.com/python/cpython
 ENV PYTHON_VERSION 3.7.3
-# control: check that python doesn't already exist
+# control test: check that python doesn't already exist
 RUN if command -v python 2>/dev/null; then exit 1; fi
 RUN git clone \
   --depth "1" \
