@@ -58,8 +58,13 @@ RUN set -euxo pipefail \
     "https://github.com/python/cpython.git" \
   && cd cpython \
   && git checkout "v$PYTHON_VERSION" \
+  && echo "running steps from python build instructions https://github.com/python/cpython#build-instructions" \
+  && echo "as an opinionated change, we `make install` without sudo" \
   && ./configure \
   && make \
   && make install \
+  && echo "linking 'python' to the recently built python version" \
+  && ln -s /usr/local/bin/python3 /usr/local/bin/python \
+  && echo "testing that python build and linking was successful" \
+  && python --version | sed "s/Python //" | xargs -I {} bash -c "if [[ {} -ne '$PYTHON_VERSION' ]]; then exit 1; fi" \
   && echo "python install done!"
-  # && cat `python --version` | sed "s/Python //" | xargs if [[ "$1:" -ne "$PYTHON_VERSION" ]]; then exit 1;
