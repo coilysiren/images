@@ -40,7 +40,7 @@ RUN git clone \
   --config "advice.detachedHead=false" \
   "https://github.com/python/cpython.git"
 WORKDIR /projects/cpython
-RUN git checkout "$PYTHON_VERSION"
+RUN git checkout "v$PYTHON_VERSION"
 RUN ./configure
 RUN make
 RUN make test
