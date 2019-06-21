@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:19.10
 
 # workdir
 #   docs: https://docs.docker.com/engine/reference/builder/#workdir
@@ -43,7 +43,7 @@ WORKDIR /projects/cpython
 RUN git checkout "v$PYTHON_VERSION"
 RUN ./configure
 RUN make
-RUN make test
+# RUN make test
 # RUN python --version
 
 WORKDIR /projects
