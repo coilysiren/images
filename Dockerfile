@@ -10,7 +10,7 @@ RUN apt-get install -y \
   git \
   shellcheck \
   build-essential \
-  lsb-release
+  lsb-core
 
 # PYTHON
 # https://github.com/python/cpython
