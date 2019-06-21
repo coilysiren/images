@@ -1,7 +1,18 @@
 FROM ubuntu
 
-RUN mkdir -p /projects
+# workdir
+#   docs: https://docs.docker.com/engine/reference/builder/#workdir
 WORKDIR /projects
+# run
+#   docs: https://docs.docker.com/engine/reference/builder/#run
+# mkdir
+#   docs: http://manpages.ubuntu.com/manpages/bionic/man1/mkdir.1.html (swap ubuntu version as needed)
+RUN mkdir -p /projects
+# shell
+#   docs: https://docs.docker.com/engine/reference/builder/#shell
+# bash
+#   docs: https://www.gnu.org/software/bash/manual/html_node/index.html
+SHELL ["/bin/bash", "-c"]
 
 # "what is `set -euxo pipefile` for?"
 #   docs: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
