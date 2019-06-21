@@ -2,6 +2,7 @@ FROM ubuntu
 
 RUN mkdir -p /projects
 WORKDIR /projects
+ENTRYPOINT ["/bin/bash", "-c"]
 
 # APT
 RUN apt-get update
