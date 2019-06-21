@@ -31,6 +31,7 @@ RUN set -euxo pipefail \
     git \
     shellcheck \
     build-essential \
+    g++ \
     lsb-core
 
 # PYTHON
