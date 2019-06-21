@@ -63,8 +63,8 @@ RUN set -euxo pipefail \
   && ./configure \
   && make \
   && make install \
-  && echo "linking `python` to the recently built python version" \
+  && echo "linking 'python' to the recently built python version" \
   && ln -s /usr/local/bin/python3 /usr/local/bin/python \
   && echo "testing that python build and linking was successful" \
-  && python --version | sed "s/Python //" | xargs -I {} bash -c "if [ {}: -ne $PYTHON_VERSION 5]; then exit 1;" \
+  && python --version | sed "s/Python //" | xargs -I {} bash -c "if [[ {} -ne '$PYTHON_VERSION' ]]; then exit 1; fi" \
   && echo "python install done!"
