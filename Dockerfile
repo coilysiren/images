@@ -2,26 +2,26 @@
 #   wiki: https://en.wikipedia.org/wiki/Ubuntu
 FROM ubuntu:19.10
 
-# workdir
-#   docs: https://docs.docker.com/engine/reference/builder/#workdir
-WORKDIR /projects
-# run
-#   docs: https://docs.docker.com/engine/reference/builder/#run
-# mkdir
-#   docs: http://manpages.ubuntu.com/manpages/bionic/man1/mkdir.1.html (swap ubuntu version as needed)
-RUN mkdir -p /projects
-# shell
-#   docs: https://docs.docker.com/engine/reference/builder/#shell
-# bash
-#   docs: https://www.gnu.org/software/bash/manual/html_node/index.html
-SHELL ["/bin/bash", "-c"]
-# entrypoint
-#   docs: https://docs.docker.com/engine/reference/builder/#entrypoint
-ENTRYPOINT ["/bin/bash", "-c"]
-
+# docker docs:
+#   run - https://docs.docker.com/engine/reference/builder/#run
+#   workdir - https://docs.docker.com/engine/reference/builder/#workdir
+#   shell - https://docs.docker.com/engine/reference/builder/#shell
+#   entrypoint - https://docs.docker.com/engine/reference/builder/#entrypoint
+#
+# tool docs:
+#   bash - https://www.gnu.org/software/bash/manual/html_node/index.html
+#   mkdir - http://manpages.ubuntu.com/manpages/bionic/man1/mkdir.1.html (swap ubuntu version as needed)
+#
+# bash (as oppossed to the default, sh) is required for `set -euxo pipefile` calls.
+#
 # "what is `set -euxo pipefile` for?"
 #   docs: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 #   blog post: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+#
+RUN mkdir -p /projects
+WORKDIR /projects
+SHELL ["/bin/bash", "-c"]
+ENTRYPOINT ["/bin/bash", "-c"]
 
 # APT
 # packages:
