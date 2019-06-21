@@ -61,5 +61,6 @@ RUN set -euxo pipefail \
   && ./configure \
   && make \
   && make install \
+  && ln -s /usr/local/bin/python3 /usr/local/bin/python \
   && python --version | sed "s/Python //" | xargs -I {} bash -c "if [ {}: -ne $PYTHON_VERSION 5]; then exit 1;" \
   && echo "python install done!"
