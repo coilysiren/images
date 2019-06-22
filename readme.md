@@ -6,7 +6,7 @@ A personalized and well documented [docker](https://www.docker.com/) dev time ba
 
 High level components added:
 
-- [ ] python
+- [x] python
 - [ ] golang
 - [ ] nodejs
 - [ ] rust
