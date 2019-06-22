@@ -57,7 +57,6 @@ RUN set -euxo pipefail \
     --config "advice.detachedHead=false" \
     "https://github.com/python/cpython.git" \
   && cd cpython \
-  && git checkout "v$PYTHON_VERSION" \
   && echo "running steps from python build instructions https://github.com/python/cpython#build-instructions" \
   && echo "as an opinionated change, we `make install` without sudo" \
   && ./configure \
