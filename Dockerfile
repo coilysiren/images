@@ -66,5 +66,5 @@ RUN set -euxo pipefail \
   && echo "linking 'python' to the recently built python version" \
   && ln -s /usr/local/bin/python3 /usr/local/bin/python \
   && echo "testing that python build and linking was successful" \
-  && python -c "import platform; assert platform.python_version() == os.getenv('PYTHON_VERSION')" \
+  && python -c "import os, platform; assert platform.python_version() == os.getenv('PYTHON_VERSION')" \
   && echo "python install done!"
