@@ -4,6 +4,8 @@ A personalized and well documented [docker](https://www.docker.com/) dev time ba
 
 ## Status
 
+High level components added:
+
 - [ ] python
 - [ ] golang
 - [ ] nodejs
