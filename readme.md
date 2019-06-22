@@ -2,6 +2,22 @@
 
 A personalized and well documented [docker](https://www.docker.com/) dev time base image.
 
+## Usage
+
+```bash
+docker pull lynncyrin/base-image
+docker run -it lynncyrin/base-image
+```
+
+I'd actually prefer (but do not enforce) that you do not use my base image, unless:
+
+- I ask you to use it (generally for working on something with me)
+- You're using it to work on one of my repos
+
+I say this because I provide no long-term garuntees about the contents / correctness of my base image. This contrasts with software I'm creating with the intention of people using it, such as [py-sh](https://github.com/lynncyrin/py-sh).
+
+Instead, you should copy paste / fork (whichever you prefer) this repo and create your own! Personalize your base image like you'd personalize your laptop, or your living room ✨
+
 ## Status
 
 High level components added:
