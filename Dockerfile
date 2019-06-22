@@ -33,6 +33,9 @@ ENTRYPOINT ["/bin/bash", "-c"]
 #   zlib1g-dev - installs zlib https://github.com/madler/zlib, necessary for compilation (some resources are compressed)
 #   libssl-dev - installs https://github.com/openssl/openssl, necessary for ssl
 #   libffi-dev - installs https://sourceware.org/libffi/, necessary for python / ruby / etc to call c code
+#
+# docker docs:
+#   run - https://docs.docker.com/engine/reference/builder/#run
 RUN set -euxo pipefail \
   && apt-get update \
   && apt-get install -y \
@@ -49,7 +52,12 @@ RUN set -euxo pipefail \
 # PYTHON
 #   website: https://www.python.org/
 #   source: https://github.com/python/cpython
-ENV PYTHON_VERSION 3.7.3
+#   inspiration: https://github.com/docker-library/python
+#
+# docker docs:
+#   env - https://docs.docker.com/engine/reference/builder/#env
+#   run - https://docs.docker.com/engine/reference/builder/#run
+ENV PYTHON_VERSION=3.7.3
 RUN set -euxo pipefail \
   && git clone \
     --depth "1" \
@@ -66,4 +74,7 @@ RUN set -euxo pipefail \
   && ln -s /usr/local/bin/python3 /usr/local/bin/python \
   && echo "testing that python build and linking was successful" \
   && python -c "import os, platform; assert platform.python_version() == os.getenv('PYTHON_VERSION')" \
+  && echo "linking 'pip' and updating the pip version" \
+  && ln -s /usr/local/bin/pip3 /usr/local/bin/pip \
+  && pip install --upgrade pip \
   && echo "python install done!"
