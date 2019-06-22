@@ -58,7 +58,6 @@ RUN set -euxo pipefail \
 #   env - https://docs.docker.com/engine/reference/builder/#env
 #   run - https://docs.docker.com/engine/reference/builder/#run
 ENV PYTHON_VERSION=3.7.3
-ENV PYTHON_PIP_VERSION=19.1.1
 RUN set -euxo pipefail \
   && git clone \
     --depth "1" \
@@ -76,8 +75,7 @@ RUN set -euxo pipefail \
   && ln -s /usr/local/bin/python3 /usr/local/bin/python \
   && echo "testing that python build and linking was successful" \
   && python -c "import os, platform; assert platform.python_version() == os.getenv('PYTHON_VERSION')" \
-  && echo "linking 'pip' to the recently installed pip version" \
+  && echo "linking 'pip' and updating the pip version" \
   && ln -s /usr/local/bin/pip3 /usr/local/bin/pip \
-  && echo "updating pip to the desired version" \
-  && pip install --upgrade pip==$PYTHON_PIP_VERSION \
+  && pip install --upgrade pip \
   && echo "python install done!"
