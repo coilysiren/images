@@ -77,4 +77,9 @@ RUN set -euxo pipefail \
   && echo "linking 'pip' and updating the pip version" \
   && ln -s /usr/local/bin/pip3 /usr/local/bin/pip \
   && pip install --upgrade pip \
+  && echo "installing python packages" \
+  && echo "https://github.com/prompt-toolkit/ptpython" \
+  && echo "https://github.com/pypa/pipenv" \
+  && pip install ptipython pipenv \
+  && pipenv --version \
   && echo "python install done!"
