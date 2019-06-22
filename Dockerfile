@@ -82,5 +82,4 @@ RUN set -euxo pipefail \
   && echo "https://github.com/pypa/pipenv" \
   && pip install ptipython pipenv \
   && pipenv --version \
-  && ptipython --version \
   && echo "python install done!"
