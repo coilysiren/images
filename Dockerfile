@@ -64,6 +64,7 @@ RUN set -euxo pipefail \
 
 # HOMEBREW
 #   website: https://docs.brew.sh/Homebrew-on-Linux
+#   example: https://github.com/Linuxbrew/docker/blob/master/bionic/Dockerfile
 #
 # docker docs:
 #   env - https://docs.docker.com/engine/reference/builder/#env
@@ -73,10 +74,10 @@ RUN set -euxo pipefail \
 RUN locale-gen en_US.UTF-8
 ENV LC_ALL="en_US.UTF-8"
 RUN set -euxo pipefail \
-  && git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew \
-  && mkdir ~/.linuxbrew/bin \
-  && ln -s ../Homebrew/bin/brew ~/.linuxbrew/bin \
-  && eval $(~/.linuxbrew/bin/brew shellenv)
+  && git clone https://github.com/Homebrew/brew /home/linuxbrew/.linuxbrew/Homebrew \
+  && mkdir /home/linuxbrew/.linuxbrew/bin \
+  && ln -s ../Homebrew/bin/brew /home/linuxbrew/.linuxbrew/bin/ \
+  && brew config
 
 # PYTHON
 #   website: https://www.python.org/
