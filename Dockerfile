@@ -70,7 +70,11 @@ RUN set -euxo pipefail \
 #   env - https://docs.docker.com/engine/reference/builder/#env
 #   run - https://docs.docker.com/engine/reference/builder/#run
 #
+# The code you see here is a mix of my personal preferences, and the example dockerfile
+# linked above.
+#
 # locale-gen / LC_ALL details: https://github.com/lynncyrin/base-image/issues/44
+# sbin notes: https://github.com/lynncyrin/base-image/issues/46
 RUN locale-gen en_US.UTF-8
 ENV LC_ALL="en_US.UTF-8"
 ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH
