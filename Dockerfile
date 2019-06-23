@@ -73,6 +73,7 @@ RUN set -euxo pipefail \
 # locale-gen / LC_ALL details: https://github.com/lynncyrin/base-image/issues/44
 RUN locale-gen en_US.UTF-8
 ENV LC_ALL="en_US.UTF-8"
+ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH
 RUN set -euxo pipefail \
   && git clone https://github.com/Homebrew/brew /home/linuxbrew/.linuxbrew/Homebrew \
   && mkdir /home/linuxbrew/.linuxbrew/bin \
