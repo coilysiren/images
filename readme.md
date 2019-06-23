@@ -9,7 +9,7 @@ docker pull lynncyrin/base-image
 docker run -it lynncyrin/base-image
 ```
 
-If you're looking at this repo and thinking "I want this, but slightly different", I encourage you to copy paste / fork (whichever you prefer) this repo and create your own! Personalize your base image like you'd personalize your laptop, or your living room ✨ Make all the changes you want!
+If you're looking at this repo and thinking "I want this, but slightly different", I encourage you to copy paste this repo and create your own! Personalize your base image like you'd personalize your laptop, or your living room ✨ Make all the changes you want!
 
 ## Status
 
