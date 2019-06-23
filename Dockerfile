@@ -57,8 +57,9 @@ RUN set -euxo pipefail \
 # docker docs:
 #   env - https://docs.docker.com/engine/reference/builder/#env
 #   run - https://docs.docker.com/engine/reference/builder/#run
-# RUN locale-gen en_US.UTF-8
-# ENV LC_ALL="en_US.UTF-8"
+#
+# locale-gen details: https://github.com/lynncyrin/base-image/issues/44
+RUN locale-gen en_US.UTF-8
 RUN set -euxo pipefail \
   && git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew \
   && mkdir ~/.linuxbrew/bin \
