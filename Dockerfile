@@ -99,7 +99,7 @@ RUN set -euxo pipefail \
 # change, we `make install` without sudo.
 #
 # The `ln -s` lines are a personal preference, I like using symlinks to add
-# things into my path (with shortened names).  This issue
+# things into my path (with shortened names). This issue
 # https://github.com/lynncyrin/base-image/issues/26 describes the long-term
 # future here.
 #
