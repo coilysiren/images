@@ -2,6 +2,14 @@
 #   wiki: https://en.wikipedia.org/wiki/Ubuntu
 FROM ubuntu:19.10
 
+# docker docs:
+#   run - https://docs.docker.com/engine/reference/builder/#run
+#   workdir - https://docs.docker.com/engine/reference/builder/#workdir
+#   shell - https://docs.docker.com/engine/reference/builder/#shell
+#   entrypoint - https://docs.docker.com/engine/reference/builder/#entrypoint
+#   arg - https://docs.docker.com/engine/reference/builder/#arg
+#   env - https://docs.docker.com/engine/reference/builder/#env
+
 # Some installers will avoid prompting you if you have the `DEBIAN_FRONTEND` environment variable
 # set to `noninteractive`. The vast majority of Dockerfiles will want to have this set, since
 # docker build is often done without a human user involved.
@@ -10,15 +18,8 @@ FROM ubuntu:19.10
 # only for the duration of this image build (as opposed to being set for all child-builds of this image).
 #
 # https://github.com/moby/moby/issues/4032
-# https://docs.docker.com/engine/reference/builder/#arg
 ARG DEBIAN_FRONTEND=noninteractive
 
-# docker docs:
-#   run - https://docs.docker.com/engine/reference/builder/#run
-#   workdir - https://docs.docker.com/engine/reference/builder/#workdir
-#   shell - https://docs.docker.com/engine/reference/builder/#shell
-#   entrypoint - https://docs.docker.com/engine/reference/builder/#entrypoint
-#
 # tool docs:
 #   bash - https://www.gnu.org/software/bash/manual/html_node/index.html
 #   mkdir - http://manpages.ubuntu.com/manpages/bionic/man1/mkdir.1.html (swap ubuntu version as needed)
@@ -27,7 +28,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 # "what is `set -euxo pipefile` for?"
 #   docs: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 #   blog post: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
-#
 RUN mkdir -p /projects
 WORKDIR /projects
 SHELL ["/bin/bash", "-c"]
@@ -45,9 +45,6 @@ ENTRYPOINT ["/bin/bash", "-c"]
 #   libssl-dev - installs https://github.com/openssl/openssl, necessary for ssl
 #   libffi-dev - installs https://sourceware.org/libffi/, necessary for python / ruby / etc to call c code
 #   file - installs https://github.com/file/file, requested by homebrew https://docs.brew.sh/Homebrew-on-Linux#debian-or-ubuntu
-#
-# docker docs:
-#   run - https://docs.docker.com/engine/reference/builder/#run
 RUN set -euxo pipefail \
   && apt-get update \
   && apt-get install -y \
@@ -65,10 +62,6 @@ RUN set -euxo pipefail \
 # HOMEBREW
 #   website: https://docs.brew.sh/Homebrew-on-Linux
 #   example: https://github.com/Linuxbrew/docker/blob/master/bionic/Dockerfile
-#
-# docker docs:
-#   env - https://docs.docker.com/engine/reference/builder/#env
-#   run - https://docs.docker.com/engine/reference/builder/#run
 #
 # The code you see here is a mix of my personal preferences, and the example dockerfile
 # linked above.
@@ -89,10 +82,6 @@ RUN set -euxo pipefail \
 #   website: https://www.python.org/
 #   source: https://github.com/python/cpython
 #   inspiration: https://github.com/docker-library/python
-#
-# docker docs:
-#   env - https://docs.docker.com/engine/reference/builder/#env
-#   run - https://docs.docker.com/engine/reference/builder/#run
 #
 # The `git clone ...` is a personal preference, pulled from some work I've
 # done with custom homebrew taps. The big upside is that it helps enable the
