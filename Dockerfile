@@ -33,6 +33,7 @@ ENTRYPOINT ["/bin/bash", "-c"]
 #   zlib1g-dev - installs zlib https://github.com/madler/zlib, necessary for compilation (some resources are compressed)
 #   libssl-dev - installs https://github.com/openssl/openssl, necessary for ssl
 #   libffi-dev - installs https://sourceware.org/libffi/, necessary for python / ruby / etc to call c code
+#   file - installs https://github.com/file/file, requested by homebrew https://docs.brew.sh/Homebrew-on-Linux#debian-or-ubuntu
 #
 # docker docs:
 #   run - https://docs.docker.com/engine/reference/builder/#run
@@ -47,7 +48,23 @@ RUN set -euxo pipefail \
     lsb-core \
     zlib1g-dev \
     libssl-dev \
-    libffi-dev
+    libffi-dev \
+    file
+
+
+# HOMEBREW
+#   website: https://docs.brew.sh/Homebrew-on-Linux
+#
+# docker docs:
+#   env - https://docs.docker.com/engine/reference/builder/#env
+#   run - https://docs.docker.com/engine/reference/builder/#run
+RUN locale-gen en_US.UTF-8
+ENV LC_ALL="en_US.UTF-8"
+RUN set -euxo pipefail \
+  && git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew \
+  && mkdir ~/.linuxbrew/bin \
+  && ln -s ../Homebrew/bin/brew ~/.linuxbrew/bin \
+  && eval $(~/.linuxbrew/bin/brew shellenv)
 
 # PYTHON
 #   website: https://www.python.org/
@@ -57,7 +74,7 @@ RUN set -euxo pipefail \
 # docker docs:
 #   env - https://docs.docker.com/engine/reference/builder/#env
 #   run - https://docs.docker.com/engine/reference/builder/#run
-ENV PYTHON_VERSION=3.7.3
+ENV PYTHON_VERSION="3.7.3"
 RUN set -euxo pipefail \
   && git clone \
     --depth "1" \
