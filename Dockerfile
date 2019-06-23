@@ -2,6 +2,17 @@
 #   wiki: https://en.wikipedia.org/wiki/Ubuntu
 FROM ubuntu:19.10
 
+# Some installers will avoid prompting you if you have the `DEBIAN_FRONTEND` environment variable
+# set to `noninteractive`. The vast majority of Dockerfiles will want to have this set, since
+# docker build is often done without a human user involved.
+#
+# Further, we set it as a docker ARG rather than an ENV. Using it as an ARG will make it be set
+# only for the duration of this image build (as opposed to being set for all child-builds of this image).
+#
+# https://github.com/moby/moby/issues/4032
+# https://docs.docker.com/engine/reference/builder/#arg
+ARG DEBIAN_FRONTEND=noninteractive
+
 # docker docs:
 #   run - https://docs.docker.com/engine/reference/builder/#run
 #   workdir - https://docs.docker.com/engine/reference/builder/#workdir
@@ -33,6 +44,7 @@ ENTRYPOINT ["/bin/bash", "-c"]
 #   zlib1g-dev - installs zlib https://github.com/madler/zlib, necessary for compilation (some resources are compressed)
 #   libssl-dev - installs https://github.com/openssl/openssl, necessary for ssl
 #   libffi-dev - installs https://sourceware.org/libffi/, necessary for python / ruby / etc to call c code
+#   file - installs https://github.com/file/file, requested by homebrew https://docs.brew.sh/Homebrew-on-Linux#debian-or-ubuntu
 #
 # docker docs:
 #   run - https://docs.docker.com/engine/reference/builder/#run
@@ -47,7 +59,26 @@ RUN set -euxo pipefail \
     lsb-core \
     zlib1g-dev \
     libssl-dev \
-    libffi-dev
+    libffi-dev \
+    file
+
+# HOMEBREW
+#   website: https://docs.brew.sh/Homebrew-on-Linux
+#   example: https://github.com/Linuxbrew/docker/blob/master/bionic/Dockerfile
+#
+# docker docs:
+#   env - https://docs.docker.com/engine/reference/builder/#env
+#   run - https://docs.docker.com/engine/reference/builder/#run
+#
+# locale-gen / LC_ALL details: https://github.com/lynncyrin/base-image/issues/44
+RUN locale-gen en_US.UTF-8
+ENV LC_ALL="en_US.UTF-8"
+ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH
+RUN set -euxo pipefail \
+  && git clone https://github.com/Homebrew/brew /home/linuxbrew/.linuxbrew/Homebrew \
+  && mkdir /home/linuxbrew/.linuxbrew/bin \
+  && ln -s ../Homebrew/bin/brew /home/linuxbrew/.linuxbrew/bin/ \
+  && brew config
 
 # PYTHON
 #   website: https://www.python.org/
@@ -57,7 +88,7 @@ RUN set -euxo pipefail \
 # docker docs:
 #   env - https://docs.docker.com/engine/reference/builder/#env
 #   run - https://docs.docker.com/engine/reference/builder/#run
-ENV PYTHON_VERSION=3.7.3
+ENV PYTHON_VERSION="3.7.3"
 RUN set -euxo pipefail \
   && git clone \
     --depth "1" \
