@@ -110,6 +110,9 @@ RUN set -euxo pipefail \
 # We use `python -c` to get python to test itself. At some point in the future
 # that'll change to use py-sh instead. The issue for that is here
 # https://github.com/lynncyrin/base-image/issues/35.
+#
+# The last step is pip installing various python tools that I think are ✨ nice ✨.
+# And then testing their versions (relevant issue https://github.com/lynncyrin/base-image/issues/29)
 ENV PYTHON_VERSION="3.7.3"
 RUN set -euxo pipefail \
   && git clone \
