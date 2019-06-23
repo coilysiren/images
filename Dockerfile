@@ -39,7 +39,7 @@ ENTRYPOINT ["/bin/bash", "-c"]
 #   git - installs git https://git-scm.com/
 #   shellcheck - installs https://github.com/koalaman/shellcheck for optional shell syntax linting
 #   build-essential - installs gcc / make / etc
-#   g++ - for building c++
+#   g++ - for building c++, necessary for python
 #   lsb-core - installs lsb_release for optionally inspecting os version
 #   zlib1g-dev - installs zlib https://github.com/madler/zlib, necessary for compilation (some resources are compressed)
 #   libssl-dev - installs https://github.com/openssl/openssl, necessary for ssl
