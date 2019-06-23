@@ -2,6 +2,17 @@
 #   wiki: https://en.wikipedia.org/wiki/Ubuntu
 FROM ubuntu:19.10
 
+# Some installers will avoid prompting you if you have the `DEBIAN_FRONTEND` environment variable
+# set to `noninteractive`. The vast majority of Dockerfiles will want to have this set, since
+# docker build is often done without a human user involved.
+#
+# Further, we set it as a docker ARG rather than an ENV. Using it as an ARG will make it be set
+# only for the duration of this image build (as opposed to being set for all child-builds of this image).
+#
+# https://github.com/moby/moby/issues/4032
+# https://docs.docker.com/engine/reference/builder/#arg
+ARG DEBIAN_FRONTEND=noninteractive
+
 # docker docs:
 #   run - https://docs.docker.com/engine/reference/builder/#run
 #   workdir - https://docs.docker.com/engine/reference/builder/#workdir
