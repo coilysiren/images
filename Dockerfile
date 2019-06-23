@@ -39,7 +39,7 @@ ENTRYPOINT ["/bin/bash", "-c"]
 #   git - installs git https://git-scm.com/
 #   shellcheck - installs https://github.com/koalaman/shellcheck for optional shell syntax linting
 #   build-essential - installs gcc / make / etc
-#   g++ - for building c++
+#   g++ - for building c++, necessary for python
 #   lsb-core - installs lsb_release for optionally inspecting os version
 #   zlib1g-dev - installs zlib https://github.com/madler/zlib, necessary for compilation (some resources are compressed)
 #   libssl-dev - installs https://github.com/openssl/openssl, necessary for ssl
@@ -82,7 +82,8 @@ RUN set -euxo pipefail \
   && git clone https://github.com/Homebrew/brew /home/linuxbrew/.linuxbrew/Homebrew \
   && mkdir /home/linuxbrew/.linuxbrew/bin \
   && ln -s ../Homebrew/bin/brew /home/linuxbrew/.linuxbrew/bin/ \
-  && brew config
+  && brew config \
+  && echo "brew install done!"
 
 # PYTHON
 #   website: https://www.python.org/
@@ -92,6 +93,26 @@ RUN set -euxo pipefail \
 # docker docs:
 #   env - https://docs.docker.com/engine/reference/builder/#env
 #   run - https://docs.docker.com/engine/reference/builder/#run
+#
+# The `git clone ...` is a personal preference, pulled from some work I've
+# done with custom homebrew taps. The big upside is that it helps enable the
+# eventual future where I start contributing to python itself.
+#
+# This section `./configure ... make install` is from the python documentation
+# here: https://github.com/python/cpython#build-instructions. As an opinionated
+# change, we `make install` without sudo.
+#
+# The `ln -s` lines are a personal preference, I like using symlinks to add
+# things into my path (with shortened names). This issue
+# https://github.com/lynncyrin/base-image/issues/26 describes the long-term
+# future here.
+#
+# We use `python -c` to get python to test itself. At some point in the future
+# that'll change to use py-sh instead. The issue for that is here
+# https://github.com/lynncyrin/base-image/issues/35.
+#
+# The last step is pip installing various python tools that I think are ✨ nice ✨.
+# And then testing their versions (relevant issue https://github.com/lynncyrin/base-image/issues/29)
 ENV PYTHON_VERSION="3.7.3"
 RUN set -euxo pipefail \
   && git clone \
@@ -100,21 +121,13 @@ RUN set -euxo pipefail \
     --config "advice.detachedHead=false" \
     "https://github.com/python/cpython.git" \
   && cd cpython \
-  && echo "running steps from python build instructions https://github.com/python/cpython#build-instructions" \
-  && echo "as an opinionated change, we `make install` without sudo" \
   && ./configure \
   && make \
   && make install \
-  && echo "linking 'python' to the recently built python version" \
   && ln -s /usr/local/bin/python3 /usr/local/bin/python \
-  && echo "testing that python build and linking was successful" \
   && python -c "import os, platform; assert platform.python_version() == os.getenv('PYTHON_VERSION')" \
-  && echo "linking 'pip' and updating the pip version" \
   && ln -s /usr/local/bin/pip3 /usr/local/bin/pip \
   && pip install --upgrade pip \
-  && echo "installing python packages" \
-  && echo "https://github.com/prompt-toolkit/ptpython" \
-  && echo "https://github.com/pypa/pipenv" \
   && pip install ptipython pipenv \
   && pipenv --version \
   && echo "python install done!"
