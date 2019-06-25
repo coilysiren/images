@@ -122,7 +122,14 @@ RUN set -euxo pipefail \
   && echo "python install done!"
 
 # GOLANG
-RUN brew install golang
+#   formula: https://formulae.brew.sh/formula/go
+RUN brew install go
 # disables go trying to build with extra c extensions
 # fixes errors like "gcc-5": executable file not found in $PATH
 ENV CGO_ENABLED=0
+
+# NODE
+#   formula: https://formulae.brew.sh/formula/node
+RUN set -euxo pipefail \
+  && brew install node \
+  && npm --version
