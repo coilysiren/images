@@ -133,3 +133,8 @@ ENV CGO_ENABLED=0
 RUN set -euxo pipefail \
   && brew install node \
   && npm --version
+
+# RUSTLANG
+#   website: https://www.rust-lang.org/
+#   install docs: https://www.rust-lang.org/tools/install
+RUN curl https://sh.rustup.rs -ysSf | sh
