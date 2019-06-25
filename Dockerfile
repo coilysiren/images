@@ -137,4 +137,4 @@ RUN set -euxo pipefail \
 # RUSTLANG
 #   website: https://www.rust-lang.org/
 #   install docs: https://www.rust-lang.org/tools/install
-RUN curl https://sh.rustup.rs -sSf | sh
+RUN curl https://sh.rustup.rs -ysSf | sh
