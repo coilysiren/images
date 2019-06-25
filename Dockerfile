@@ -123,3 +123,6 @@ RUN set -euxo pipefail \
 
 # GOLANG
 RUN brew install golang
+# disables go trying to build with extra c extensions
+# fixes errors like "gcc-5": executable file not found in $PATH
+ENV CGO_ENABLED=0
