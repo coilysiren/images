@@ -128,4 +128,6 @@ RUN brew install golang
 ENV CGO_ENABLED=0
 
 # RUSTLANG
+#   website: https://www.rust-lang.org/
+#   install docs: https://www.rust-lang.org/tools/install
 RUN curl https://sh.rustup.rs -sSf | sh
