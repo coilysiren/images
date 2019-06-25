@@ -130,4 +130,6 @@ ENV CGO_ENABLED=0
 
 # NODE
 #   formula: https://formulae.brew.sh/formula/node
-RUN brew install node
+RUN set -euxo pipefail \
+  && brew install node \
+  && npm --version
