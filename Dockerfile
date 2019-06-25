@@ -120,3 +120,6 @@ RUN set -euxo pipefail \
   && pip install ptipython pipenv \
   && pipenv --version \
   && echo "python install done!"
+
+# GOLANG
+RUN brew install golang
