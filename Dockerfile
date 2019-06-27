@@ -138,3 +138,6 @@ RUN set -euxo pipefail \
 #   website: https://www.rust-lang.org/
 #   install docs: https://www.rust-lang.org/tools/install
 RUN curl https://sh.rustup.rs -ysSf | sh
+
+# swap to python 2 for node support
+RUN brew install python@2
